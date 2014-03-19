@@ -2284,7 +2284,11 @@ abstract class XmlaOlap4jConnection implements OlapConnection {
             new MetadataColumn("HIERARCHY_IS_VISIBLE"),
             new MetadataColumn("HIERARCHY_ORDINAL"),
             new MetadataColumn("DIMENSION_IS_SHARED"),
-            new MetadataColumn("PARENT_CHILD")),
+            new MetadataColumn("PARENT_CHILD"),
+            new MetadataColumn("HIERARCHY_ORIGIN"),
+            new MetadataColumn("HIERARCHY_DISPLAY_FOLDER"),
+            new MetadataColumn("CUBE_SOURCE"),
+            new MetadataColumn("HIERARCHY_VISIBILITY")),
         MDSCHEMA_LEVELS(
             new MetadataColumn("CATALOG_NAME"),
             new MetadataColumn("SCHEMA_NAME"),
@@ -2312,9 +2316,17 @@ abstract class XmlaOlap4jConnection implements OlapConnection {
             new MetadataColumn("MEASURE_GUID"),
             new MetadataColumn("MEASURE_AGGREGATOR"),
             new MetadataColumn("DATA_TYPE"),
+            new MetadataColumn("NUMERIC_PRECISION"),
+            new MetadataColumn("NUMERIC_SCALE"),
+            new MetadataColumn("MEASURE_DISPLAY_FOLDER"),
+            new MetadataColumn("EXPRESSION"),
+            new MetadataColumn("MEASURE_UNITS"),
             new MetadataColumn("MEASURE_IS_VISIBLE"),
             new MetadataColumn("LEVELS_LIST"),
-            new MetadataColumn("DESCRIPTION")),
+            new MetadataColumn("DESCRIPTION"),
+            new MetadataColumn("DEFAULT_FORMAT_STRING"),
+            new MetadataColumn("CUBE_SOURCE"),
+            new MetadataColumn("MEASURE_VISIBILITY")),
         MDSCHEMA_MEMBERS(
             new MetadataColumn("CATALOG_NAME"),
             new MetadataColumn("SCHEMA_NAME"),
@@ -2326,6 +2338,9 @@ abstract class XmlaOlap4jConnection implements OlapConnection {
             new MetadataColumn("MEMBER_ORDINAL"),
             new MetadataColumn("MEMBER_NAME"),
             new MetadataColumn("MEMBER_UNIQUE_NAME"),
+            new MetadataColumn("DESCRIPTION"),
+            new MetadataColumn("EXPRESSION"),
+            new MetadataColumn("MEMBER_KEY"),
             new MetadataColumn("MEMBER_TYPE"),
             new MetadataColumn("MEMBER_GUID"),
             new MetadataColumn("MEMBER_CAPTION"),
@@ -2334,7 +2349,8 @@ abstract class XmlaOlap4jConnection implements OlapConnection {
             new MetadataColumn("PARENT_UNIQUE_NAME"),
             new MetadataColumn("PARENT_COUNT"),
             new MetadataColumn("TREE_OP"),
-            new MetadataColumn("DEPTH")),
+            new MetadataColumn("DEPTH"),
+            new MetadataColumn("CUBE_SOURCE")),
         MDSCHEMA_PROPERTIES(
             new MetadataColumn("CATALOG_NAME"),
             new MetadataColumn("SCHEMA_NAME"),
@@ -2354,7 +2370,8 @@ abstract class XmlaOlap4jConnection implements OlapConnection {
             new MetadataColumn("SCHEMA_NAME"),
             new MetadataColumn("CUBE_NAME"),
             new MetadataColumn("SET_NAME"),
-            new MetadataColumn("SCOPE"));
+            new MetadataColumn("SCOPE"),
+            new MetadataColumn("CUBE_SOURCE"));
 
         final List<MetadataColumn> columns;
         final Map<String, MetadataColumn> columnsByName;
