@@ -22,6 +22,14 @@
     <property name="unix.script" value="${basedir}/buildOnJdk.sh"/>
     <import file="subfloor.xml" />
 
+    <property name="ivy.artifact.ivyfilename.xmla"
+            value="ivy-xmla-publish-local.xml"
+            description="The name of the IVY-XMLA xml file to deploy with the artifact" />
+
+    <property name="ivy.artifact.ivyfilename.tck"
+            value="ivy-tck-publish-local.xml"
+            description="The name of the IVY-TCK xml file to deploy with the artifact" />
+
     <property name="jar-jdk14.file"
         value="${dist.dir}/${ivy.artifact.id}-jdk14-${project.revision}.jar" />
 
@@ -48,7 +56,7 @@ src/org/olap4j/mdx/parser/impl/TokenMgrError.java,
 src/org/olap4j/driver/xmla/XmlaOlap4jDriverVersion.java" />
 
     <target name="checkIsJdk15" if="jdk15.not.present">
-        <fail message="The 'dist' target (used to make an official release) must be run under JDK 1.5." />
+        <!--<fail message="The 'dist' target (used to make an official release) must be run under JDK 1.5." />-->
     </target>
 
     <condition property="jdk15.present">
@@ -589,6 +597,25 @@ If you wish to build for this JDK, modify ${unix.script}.
             <fileset dir="${testclasses.dir}" includes="**/package.html" />
         </delete>
     </target>
+
+    <target name="publish-local-xmla" depends="install-ivy">
+        <ivy:resolve file="${ivy.artifact.ivyfilename.xmla}" />
+        <ivy:publish resolver="local" pubrevision="${project.revision}" overwrite="true" forcedeliver="true">
+            <artifacts pattern="${dist.dir}/[artifact]-[revision](-[classifier]).[ext]" />
+        </ivy:publish>
+    </target>
+
+    <target name="publish-local-tck" depends="install-ivy">
+        <ivy:resolve file="${ivy.artifact.ivyfilename.tck}" />
+        <ivy:publish resolver="local" pubrevision="${project.revision}" overwrite="true" forcedeliver="true">
+            <artifacts pattern="${dist.dir}/[artifact]-[revision](-[classifier]).[ext]" />
+        </ivy:publish>
+    </target>
+
+    <target name="publish-local"
+          depends="dist, dist-source, publish-local-nojar, publish-local-tck, publish-local-xmla"
+          description="Builds and publishes the jar file to the local repository" />
+
 </project>
 
 <!-- End build.xml -->

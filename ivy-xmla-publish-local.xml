@@ -1,0 +1,26 @@
+<ivy-module
+    version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:m="http://ant.apache.org/ivy/maven"
+    xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+  <info organisation="${ivy.artifact.group}" module="${ivy.artifact.id}-xmla" revision="${project.revision}">
+      <license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+      <ivyauthor name="Julian Hyde" />
+      <repository name="pentaho-repository" url="http://repo.pentaho.org/artifactory"/>
+      <description homepage="http://olap4j.org">
+          XML/A driver for olap4j.
+      </description>
+  </info>
+  <configurations>
+    <conf name="default"/>
+    <conf name="default.transitive"/>
+  </configurations>
+
+  <publications>
+    <artifact name="${ivy.artifact.id}-xmla" type="jar" conf="default" />
+  </publications>
+
+  <dependencies defaultconf="default->default">
+    <dependency org="xerces" name="xercesImpl" rev="2.6.0"/>
+  </dependencies>
+</ivy-module>
